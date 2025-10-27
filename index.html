@@ -232,14 +232,14 @@
             100% { opacity: 1; transform: scale(1) rotate(0); }
         }
 
-        /* Heading styles: With animations */
+        /* Heading styles: With animations - Backup opacity 1 */
         h2 {
             text-align: center;
             margin-bottom: 3rem;
             font-size: 2.5rem;
             color: #007bff;
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1 !important; /* Force visible as backup */
+            transform: translateY(0); /* Default position */
             transition: all 0.6s ease-out;
             font-weight: 600; /* Semi-bold for section headings */
             letter-spacing: -0.5px;
@@ -282,7 +282,7 @@
             text-align: center;
         }
 
-        /* Services grid styles */
+        /* Services grid styles - Backup opacity 1 */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -294,8 +294,8 @@
             border-radius: 10px;
             text-align: center;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            opacity: 0;
-            transform: translateY(50px);
+            opacity: 1 !important; /* Force visible as backup */
+            transform: translateY(0); /* Default position */
             position: relative;
             overflow: hidden;
         }
@@ -348,11 +348,11 @@
             transform: translateY(-5px);
         }
         @keyframes slideUp {
-            from { transform: translateY(50px); }
-            to { transform: translateY(0); }
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Projects grid styles */
+        /* Projects grid styles - Backup opacity 1 */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -363,8 +363,8 @@
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s;
-            opacity: 0;
-            transform: translateX(-50px) scale(0.9);
+            opacity: 1 !important; /* Force visible as backup */
+            transform: translateX(0) scale(1); /* Default position */
         }
         .project-card.animate {
             opacity: 1;
@@ -372,16 +372,15 @@
             animation: slideInLeft 0.8s ease-out forwards;
         }
         .project-card:nth-child(even).animate {
-            transform: translateX(50px) scale(0.9);
             animation: slideInRight 0.8s ease-out forwards;
         }
         @keyframes slideInLeft {
-            from { transform: translateX(-50px) scale(0.9); }
-            to { transform: translateX(0) scale(1); }
+            from { transform: translateX(-50px) scale(0.9); opacity: 0; }
+            to { transform: translateX(0) scale(1); opacity: 1; }
         }
         @keyframes slideInRight {
-            from { transform: translateX(50px) scale(0.9); }
-            to { transform: translateX(0) scale(1); }
+            from { transform: translateX(50px) scale(0.9); opacity: 0; }
+            to { transform: translateX(0) scale(1); opacity: 1; }
         }
         .project-card:hover {
             transform: scale(1.02);
@@ -424,7 +423,7 @@
             transform: translateY(-2px);
         }
 
-        /* Reviews styles */
+        /* Reviews styles - Backup opacity 1 */
         .reviews {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -436,8 +435,8 @@
             border-radius: 10px;
             text-align: center;
             transition: box-shadow 0.3s;
-            opacity: 0;
-            transform: rotateY(90deg);
+            opacity: 1 !important; /* Force visible as backup */
+            transform: rotateY(0deg); /* Default position */
             perspective: 1000px;
         }
         .review-card.animate {
@@ -821,7 +820,6 @@
     <section id="projects">
         <h2>Projects</h2>
         <div class="projects-grid">
-            <!-- 20 Project Cards - Using placeholders -->
             <div class="project-card">
                 <img src="https://www.nazwa.pl/blog/wp-content/uploads/2021/07/najlepsze-praktyki-ecommerce-w-2021-roku.png" alt="Project 1">
                 <div class="project-info">
@@ -849,7 +847,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Commented out projects remain commented -->
             <div class="project-card">
                 <img src="https://via.placeholder.com/300x400?text=Project+20" alt="Project 20">
                 <div class="project-info">
@@ -893,7 +890,6 @@
     <section id="team" class="team-section">
         <h2>Our Team</h2>
         <div class="team-content">
-            <!-- Team member image -->
             <img src="https://plus.unsplash.com/premium_photo-1679429321023-dff2ea455b0c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fHRlYW18ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=1200" alt="Salman Khan" class="profile-img">
             <div class="team-text">
                 <h3></h3>
@@ -934,7 +930,6 @@
     <!-- Contact section: Form and contact details -->
     <section id="contact">
         <h2>Contact Us</h2>
-        <!-- Contact form -->
         <form class="contact-form" id="contactForm">
             <input type="hidden" name="access_key" value="eba6fabd-3515-4866-8ed6-850629b9c91c">
             <div class="form-group">
@@ -955,7 +950,6 @@
             </div>
             <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
         </form>
-        <!-- Contact details -->
         <div class="contact-details">
             <div class="contact-item">
                 <i class="fas fa-envelope"></i>
@@ -968,10 +962,6 @@
             <div class="contact-item">
                 <i class="fas fa-whatsapp whatsapp-icon"></i>
                 <a href="https://wa.me/+966575417138" target="_blank"><span>+966 57 541 7138</span></a>
-            </div>
-         <!--   <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-               <span>Lahore, Pakistan</span>-->
             </div>
         </div>
     </section>
@@ -1014,14 +1004,31 @@
         </div>
     </footer>
 
-    <!-- Inline JavaScript -->
+    <!-- Inline JavaScript - Enhanced fix with debugging -->
     <script>
+        console.log('JS Loaded - Starting animations fix'); // Debug log
+
+        // Force animate elements immediately
+        function forceAnimate() {
+            console.log('Force animating elements...'); // Debug
+            document.querySelectorAll('h2, .service-card, .project-card, .review-card').forEach(el => {
+                el.classList.add('animate');
+                console.log('Animated:', el.className); // Debug each element
+            });
+        }
+
+        // Run on DOM ready
+        document.addEventListener('DOMContentLoaded', forceAnimate);
+
+        // Run on full load (backup)
+        window.addEventListener('load', forceAnimate);
+
         // Mobile menu toggle with hamburger animation
         function toggleMobileMenu() {
           const menu = document.getElementById('mobileMenu');
           const hamburger = document.querySelector('.hamburger');
           menu.classList.toggle('active');
-          hamburger.classList.toggle('active'); // Toggle hamburger X animation
+          hamburger.classList.toggle('active');
         }
 
         // Smooth scrolling for nav links
@@ -1031,7 +1038,6 @@
             document.querySelector(this.getAttribute('href')).scrollIntoView({
               behavior: 'smooth'
             });
-            // Close mobile menu if open
             const menu = document.getElementById('mobileMenu');
             const hamburger = document.querySelector('.hamburger');
             menu.classList.remove('active');
@@ -1073,7 +1079,7 @@
           }
         });
 
-        // Scroll Animations using Intersection Observer
+        // Scroll Animations using Intersection Observer (still for scroll effects)
         const observerOptions = {
           threshold: 0.1,
           rootMargin: '0px 0px -50px 0px'
@@ -1087,16 +1093,9 @@
           });
         }, observerOptions);
 
-        // Observe elements
+        // Observe elements (but force already done)
         document.querySelectorAll('h2, .service-card, .project-card, .review-card').forEach(el => {
           observer.observe(el);
-        });
-
-        // FIX: Force animate on page load for desktop (where no scroll needed)
-        window.addEventListener('load', () => {
-          document.querySelectorAll('h2, .service-card, .project-card, .review-card').forEach(el => {
-            el.classList.add('animate');
-          });
         });
 
         // Parallax effect for profile image
@@ -1126,6 +1125,8 @@
         reviewCards.forEach((card, index) => {
           card.style.transitionDelay = `${index * 0.15}s`;
         });
+
+        console.log('JS setup complete'); // Debug end
     </script>
 </body>
 </html>
